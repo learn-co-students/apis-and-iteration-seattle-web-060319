@@ -1,5 +1,4 @@
 def welcome
-  # puts out a welcome message here!
   puts "Welcome, friendly nerds!"
 end
 
