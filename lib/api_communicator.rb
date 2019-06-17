@@ -21,7 +21,12 @@ def get_character_movies_from_api(character_name)
     character_hash["name"].downcase == character_name
   end
 
-  films = character[0]["films"].map do |film|
+  films = get_films_info(character[0]["films"])
+
+end
+
+def get_films_info(films_array)
+  films = films_array.map do |film|
     response = RestClient.get(film)
     JSON.parse(response)
   end
@@ -44,3 +49,11 @@ end
 
 # that `get_character_movies_from_api` method is probably pretty long. Does it do more than one job?
 # can you split it up into helper methods?
+
+def get_movie(film)
+  r = RestClient.get('http://www.swapi.co/api/films/')
+  json = JSON.parse(r)
+  movie_info = json["results"].select do |movie_hash|
+    movie_hash["title"].downcase == film.downcase
+  end
+end
