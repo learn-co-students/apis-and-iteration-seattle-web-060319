@@ -26,16 +26,16 @@ end
 
 def print_movies(films)
   film_id = films.map do |film|
-    film[31]
+    film[31].to_i
   end
   response_string = RestClient.get("https://www.swapi.co/api/films/")
   response_hash = JSON.parse(response_string)
-  binding.pry
   response_hash["results"].each do |film|
       if film_id.include?(film["episode_id"])
         puts film["title"]
       end
   end
+  #binding.pry
 end
 
 def show_character_movies(character)
