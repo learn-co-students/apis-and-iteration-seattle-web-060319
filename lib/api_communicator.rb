@@ -37,8 +37,8 @@ def print_movies(character_films)
   else
     results = get_json("films")
 
-    film_id_getter(character_films).each { |an_episode_id|
-      results.each { |film|
+    film_id_getter(character_films).select { |an_episode_id|
+      results.select { |film|
         if film['episode_id'] == an_episode_id
           puts film['title']
         end
