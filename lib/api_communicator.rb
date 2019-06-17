@@ -29,7 +29,7 @@ def all_film_info(film_list)
     response_hash2 = JSON.parse(response_string)
     films << response_hash2
   end
-  films 
+  films
 end
 
 def print_movies(films)
